@@ -31,8 +31,7 @@ public class AnswerDaoImpl implements AnswerDao {
         String file = Objects.requireNonNull(classLoader.getResource(answers)).getFile();
         List<Answer> answerList = new ArrayList<>();
 
-        try {
-            Reader reader = Files.newBufferedReader(Paths.get(file));
+        try (Reader reader = Files.newBufferedReader(Paths.get(file))) {
             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
                     .withFirstRecordAsHeader()
                     .withIgnoreHeaderCase()
