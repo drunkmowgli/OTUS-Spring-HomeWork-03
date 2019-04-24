@@ -24,20 +24,15 @@ public class Exam {
         this.messageSource = messageSource;
     }
 
-    public void startExam() {
+    public void startExam(String name, String userLocale) {
 
         Scanner inputScanner = new Scanner(System.in);
-        System.out.println("Please choose the language!\n" +
-                "Выберите язык!\n" +
-                "EN or RU");
 
-        String userLocale = inputScanner.nextLine();
         Locale locale = userLocaleService.getUserLocale(userLocale);
         locale.setDefault(locale);
         List<Question> questionList = questionService.getAll(locale);
         Map<String, String> personAnswerMap = new HashMap<>();
         System.out.println(messageSource.getMessage("name", new String[]{}, locale));
-        String name = inputScanner.nextLine();
         System.out.println(messageSource.getMessage("greeting", new String[]{name}, locale));
         for (Question question :
                 questionList) {
