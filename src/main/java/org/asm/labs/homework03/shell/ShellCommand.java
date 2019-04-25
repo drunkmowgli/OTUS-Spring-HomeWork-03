@@ -10,9 +10,9 @@ import org.springframework.shell.standard.ShellOption;
 @ShellComponent
 public class ShellCommand {
 
-    @Autowired
     private final Exam exam;
 
+    @Autowired
     public ShellCommand(Exam exam) {
         this.exam = exam;
     }
