@@ -3,8 +3,8 @@ package org.asm.labs.homework03.dao;
 
 import org.asm.labs.homework03.domain.Question;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
@@ -14,12 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application.yml")
-
 public class QuestionDaoImplTest {
 
-
-    @Autowired
+    @SpyBean
     QuestionDao questionDao;
+
 
     @Test
     public void getAll() {
@@ -27,7 +26,7 @@ public class QuestionDaoImplTest {
         List<Question> questionList = questionDao.getAll(locale);
         assertEquals(2, questionList.size());
         assertEquals("0", questionList.get(0).getId());
-        assertEquals("Назовите год крещения Руси", questionList.get(0).getQuestion());
+        assertEquals("Name the year of the baptism of Rus", questionList.get(0).getQuestion());
     }
 
 }
